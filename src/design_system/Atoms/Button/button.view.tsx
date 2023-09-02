@@ -1,8 +1,10 @@
-import React from 'react'
-import { StyledButton } from './button.styles'
+import { StyledButton } from "./button.styles"
+import { IButtonProps } from "./button.types"
 
-export default function Button() {
+export default function Button({ type, children }: IButtonProps) {
   return (
-    <StyledButton></StyledButton>
+    <StyledButton type={type}>
+      {children}
+    </StyledButton>
   )
 }

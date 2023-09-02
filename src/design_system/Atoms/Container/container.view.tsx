@@ -4,9 +4,7 @@ import { IContainerProps } from "./container.types";
 export default function Container({ children }: IContainerProps) {
   return (
     <StyledContainer>
-      <div>
         {children}
-      </div>
     </StyledContainer>
   )
 }

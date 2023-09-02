@@ -1,0 +1,1 @@
+export const validateUserkey = localStorage.getItem('userkey')
