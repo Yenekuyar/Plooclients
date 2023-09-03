@@ -3,6 +3,8 @@ import { ITableHeaderData } from './tableheaderdata.types'
 
 export default function TableHeaderData(props: ITableHeaderData) {
   return (
-    <StyledTableHeaderData>{props.children = '&nbsp'}</StyledTableHeaderData>
+    <StyledTableHeaderData>
+      {props.children}
+    </StyledTableHeaderData>
   )
 }

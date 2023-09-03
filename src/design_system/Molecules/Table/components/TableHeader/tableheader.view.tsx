@@ -3,6 +3,8 @@ import { ITableHeader } from './tableheader.types'
 
 export function TableHeader(props: ITableHeader) {
   return (
-    <StyledTableHeader>{props.children}</StyledTableHeader>
+    <StyledTableHeader>
+      {props.children}
+    </StyledTableHeader>
   )
 }

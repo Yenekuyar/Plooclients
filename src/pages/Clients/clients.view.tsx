@@ -4,6 +4,11 @@ import { validateUserkey } from '../../constants/userkey'
 import SearchBar from '../../design_system/Molecules/SearchBar/searchbar.view';
 import List from '../../design_system/Molecules/List/list.view';
 import ListItem from '../../design_system/Molecules/List/components/ListItem/listitem.view';
+import Table from '../../design_system/Molecules/Table/table.view';
+import { TableHeader } from '../../design_system/Molecules/Table/components/TableHeader/tableheader.view';
+import TableHeaderData from '../../design_system/Molecules/Table/components/TableHeader/components/TableHeaderData/tableheaderdata.view';
+import TableRow from '../../design_system/Molecules/Table/components/TableRow/tablerow.view';
+import TableData from '../../design_system/Molecules/Table/components/TableData/tabledata.view';
 
 export default function Clients() {
   const navigate = useNavigate()
@@ -30,16 +35,44 @@ export default function Clients() {
 
   return (
     <>
-    <SearchBar/>
-    Barra de busca
-      <ul>
-        <li>sexo</li>
-        <li>sexo</li>
-        <li>sexo</li>
-        <li>sexo</li>
-        <li>sexo</li>
-        <li>sexo</li>
-      </ul>
+      <SearchBar />
+      <Table cellspacing={'0'}>
+        <TableHeader>
+          <TableRow>
+            <TableHeaderData>
+              Nome
+            </TableHeaderData>
+            <TableHeaderData>
+              Id
+            </TableHeaderData>
+            <TableHeaderData>
+              CNPJ/CPF
+            </TableHeaderData>
+          </TableRow>
+          <TableRow>
+            <TableData>
+              teste
+            </TableData>
+            <TableData>
+              teste
+            </TableData>
+            <TableData>
+              teste
+            </TableData>
+          </TableRow>
+          <TableRow>
+            <TableData>
+              teste
+            </TableData>
+            <TableData>
+              teste
+            </TableData>
+            <TableData>
+              teste
+            </TableData>
+          </TableRow>
+        </TableHeader>
+      </Table>
     </>
   )
 }
