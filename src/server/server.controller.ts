@@ -1,0 +1,51 @@
+import axios from "axios";
+
+class Server {
+  private apiUrl: string;
+
+  constructor(apiUrl: string) {
+    this.apiUrl = apiUrl;
+  }
+
+  private axiosJson<RETURN_TYPE, BODY_TYPE>(
+    endpoint: string,
+    method: "GET" | "POST" | "PATCH" | "DELETE",
+    body?: BODY_TYPE,
+    userkey?: string
+  ): Promise<RETURN_TYPE> {
+    const response = axios(this.apiUrl + endpoint, {
+      method,
+      headers: {
+        "Content-Type": "application/json",
+        "User-Key": userkey,
+      },
+      data: JSON.stringify(body),
+    })
+      .then((response) => {
+        const json = response.data;
+        return json;
+      })
+      .catch((error) => {
+        alert(error);
+      });
+    return response;
+  }
+
+  get<RETURN_TYPE>(endpoint: string, userkey: string): Promise<RETURN_TYPE> {
+    return this.axiosJson<RETURN_TYPE, any>(endpoint, "GET", userkey);
+  }
+
+  post<RETURN_TYPE, BODY_TYPE>(endpoint: string, data: any, userkey: string): Promise<any> {
+    return this.axiosJson<RETURN_TYPE, BODY_TYPE>(endpoint, "POST", data, userkey);
+  }
+
+  patch<RETURN_TYPE, BODY_TYPE>(endpoint: string, data: any, userkey: string): Promise<any> {
+    return this.axiosJson(endpoint, "PATCH", data, userkey);
+  }
+
+  delete<RETURN_TYPE>(endpoint: string, userkey: string): Promise<any> {
+    return this.axiosJson<RETURN_TYPE, any>(endpoint, "DELETE", userkey);
+  }
+}
+
+export default Server

@@ -1,14 +1,12 @@
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'
-import { validateUserkey } from '../../constants/userkey'
 import SearchBar from '../../design_system/Molecules/SearchBar/searchbar.view';
-import List from '../../design_system/Molecules/List/list.view';
-import ListItem from '../../design_system/Molecules/List/components/ListItem/listitem.view';
 import Table from '../../design_system/Molecules/Table/table.view';
-import { TableHeader } from '../../design_system/Molecules/Table/components/TableHeader/tableheader.view';
 import TableHeaderData from '../../design_system/Molecules/Table/components/TableHeader/components/TableHeaderData/tableheaderdata.view';
 import TableRow from '../../design_system/Molecules/Table/components/TableRow/tablerow.view';
 import TableData from '../../design_system/Molecules/Table/components/TableData/tabledata.view';
+import TableHeader  from '../../design_system/Molecules/Table/components/TableHeader/tableheader.view';
+import { useNavigate } from 'react-router-dom'
+import { validateUserkey } from '../../constants/userkey'
 
 export default function Clients() {
   const navigate = useNavigate()
@@ -21,6 +19,8 @@ export default function Clients() {
       'Content-Type': 'application/json', // por exemplo, para um corpo JSON
     }
   };
+
+  
 
   // const response = axios.get('https://public2-api2.ploomes.com/Contacts?$select=Id', config)
   // console.log(response.then(json => {
