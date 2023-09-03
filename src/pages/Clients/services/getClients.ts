@@ -5,16 +5,23 @@ const apiUrl = process.env.REACT_APP_CENTRAL_API_URL || "";
 const clients = new Server(apiUrl);
 
 interface IGetClientsResponse {
-  data: Object
+  value: [
+    {
+      Id: number;
+      Name: string;
+      CNPJ: string;
+      CPF: string;
+    }
+  ];
 }
 
-export function getClients(){
-  const promise = clients.get<IGetClientsResponse>(
-    "Self/Login",
-    validateUserkey || ""
-  );
-  promise
-    .then((response) => {
-      console.log(response)
-    })
+
+export function getClients(userkey: string): Promise<IGetClientsResponse> {
+  const response = clients.get<IGetClientsResponse>("Contacts", `${userkey}`);
+  response
+    .then((json) => {
+    const response = json.value;
+    return response;
+  });
+  return response
 }
