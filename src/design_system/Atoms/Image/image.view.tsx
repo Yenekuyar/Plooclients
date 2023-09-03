@@ -1,8 +1,8 @@
-import { IImage } from "./image.props"
+import { IImage } from "./image.types"
 import { StyledImage } from "./image.styles"
 
-export const Image = ({ image, alt, width }: IImage) => {
+export default function Image(props: IImage) {
     return (
-        <StyledImage src={image} alt={alt} width={width}/>
+        <StyledImage src={props.image} alt={props.alt} width={props.width}/>
     )
 }

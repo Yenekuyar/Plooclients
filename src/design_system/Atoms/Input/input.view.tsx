@@ -7,6 +7,7 @@ export default function Input(props: IInputProps) {
       type={props.type}
       placeholder={props.placeholder}
       id={props.id}
+      width={props.width}
     />
   )
 }

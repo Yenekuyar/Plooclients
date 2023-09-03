@@ -1,8 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
-
-
     html {
         width: 100%;
         height: 100%;
@@ -23,6 +21,7 @@ export const GlobalStyles = createGlobalStyle`
         height: 100%;
         overflow: hidden;
         background-color: ${props => props.theme.pallete.primary.grey6};
+        -webkit-font-smoothing: antialiased;
         font-family: 'Abel', sans-serif;
     }
 
