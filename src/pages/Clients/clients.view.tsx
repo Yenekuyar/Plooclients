@@ -1,9 +1,11 @@
 import SearchBar from '../../design_system/Molecules/SearchBar/searchbar.view';
+import Header from '../../design_system/Organisms/Header/header.view';
 import Table from '../../design_system/Molecules/Table/table.view';
 import TableHeaderData from '../../design_system/Molecules/Table/components/TableHeader/components/TableHeaderData/tableheaderdata.view';
 import TableRow from '../../design_system/Molecules/Table/components/TableRow/tablerow.view';
 import TableData from '../../design_system/Molecules/Table/components/TableData/tabledata.view';
 import TableHeader  from '../../design_system/Molecules/Table/components/TableHeader/tableheader.view';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import { useNavigate } from 'react-router-dom'
 import { validateUserkey } from '../../constants/userkey'
 import { getClients } from './services/getClients';
@@ -12,7 +14,7 @@ import { IPlooClients } from './clients.types';
 import { formatCpf } from '../../constants/convertCpf';
 import { formatCnpj } from '../../constants/convertCnpj';
 import { TableContainer } from '../../design_system/Molecules/Table/components/TableContainer/tablecontainer.styles';
-import InfiniteScroll from 'react-infinite-scroll-component';
+import { TableHeaderRow } from '../../design_system/Molecules/Table/components/TableHeader/components/TableHeaderRow/tableheaderow.styles';
 
 export default function Clients() {
   const navigate = useNavigate()
@@ -25,7 +27,7 @@ export default function Clients() {
   const [searchValue, setSearchValue] = useState<string>('');
 
   useEffect(() => {
-    getClients(`Contacts?$top=30&$skip=${skipValue}`,validateUserkey || '')
+    getClients(`Contacts?$top=30&$skip=${skipValue}&$expand=Phones`,validateUserkey || '')
     .then((data) => {
       if (data.value.length > 0) {
         setClients((prevClients) => [...prevClients, ...data.value]);
@@ -35,7 +37,7 @@ export default function Clients() {
     })
       .catch((error) => {
         console.error('Erro ao buscar clientes:', error);
-      });
+    });
 
 
   }, [skipValue]);
@@ -46,6 +48,7 @@ export default function Clients() {
 
   return (
     <>
+      <Header/>
       <SearchBar />
         <TableContainer id="scrollableDiv">
             <InfiniteScroll 
@@ -57,7 +60,7 @@ export default function Clients() {
             >
           <Table cellspacing={'0'}>
             <TableHeader>
-              <TableRow>
+              <TableHeaderRow>
                 <TableHeaderData>
                   Nome
                 </TableHeaderData>
@@ -67,15 +70,26 @@ export default function Clients() {
                 <TableHeaderData>
                   CNPJ/CPF
                 </TableHeaderData>
-              </TableRow>
+                <TableHeaderData>
+                  E-mail
+                </TableHeaderData>
+                <TableHeaderData>
+                  Telefone
+                </TableHeaderData>
+              </TableHeaderRow>
             </TableHeader>
             {clients.map((client) => {
               return (
-                <TableRow key={client.Id}>
-                  <TableData>{client.Id}</TableData>
-                  <TableData>{client.Name}</TableData>
-                  {client.CNPJ ? <TableData>{formatCnpj(client.CNPJ)}</TableData> : <TableData>{formatCpf(client.CPF || '')}</TableData>}
-                </TableRow>
+                  <TableRow key={client.Id}>
+                    <TableData>{client.Name}</TableData>
+                    <TableData>{client.Id}</TableData>
+                    {client.CNPJ ? <TableData>{formatCnpj(client.CNPJ)}</TableData> : <TableData>{formatCpf(client.CPF || '')}</TableData>}
+                    <TableData>{client.Email}</TableData>
+                    <TableData>
+                      {client.Phones && client.Phones.length > 0
+                        ? client.Phones[0].PhoneNumber : ''}
+                    </TableData>
+                  </TableRow>
               )
             })}
           </Table>

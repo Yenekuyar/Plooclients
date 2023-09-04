@@ -3,7 +3,7 @@ import { ITableRow } from './tablerow.types'
 
 export default function TableRow(props: ITableRow) {
   return (
-    <StyledTableRow>
+    <StyledTableRow role="button">
       {props.children}
     </StyledTableRow>
   )

@@ -9,7 +9,6 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <GlobalStyles />
         <div className="App">
-          <Header/>
           <Outlet />
         </div>
     </ThemeProvider>

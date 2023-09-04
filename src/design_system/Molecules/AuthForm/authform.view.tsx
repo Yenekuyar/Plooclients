@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import Container from "../../Atoms/Container/container.view";
 import Label from "../../Atoms/Label/label.view";
 import { useNavigate } from "react-router-dom";
@@ -18,7 +17,6 @@ export default function AuthForm() {
 
   const salvaKey = () => {
       localStorage.setItem('userkey', userkey)
-
       navigate('clients')
   }
 

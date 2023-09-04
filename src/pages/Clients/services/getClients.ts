@@ -11,10 +11,13 @@ interface IGetClientsResponse {
       Name: string;
       CNPJ: string;
       CPF: string;
+      Email: string;
+      Phones: [{
+        PhoneNumber: string,
+      }];
     }
   ];
 }
-
 
 export function getClients(endpoint: string, userkey: string): Promise<IGetClientsResponse> {
   const response = clients.get<IGetClientsResponse>(`${endpoint}`, `${userkey}`);

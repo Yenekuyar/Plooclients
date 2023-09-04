@@ -6,5 +6,5 @@ export const StyledHeader = styled.header`
   color: ${props => props.theme.pallete.primary.text};
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
 `

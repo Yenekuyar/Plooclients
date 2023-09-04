@@ -3,4 +3,8 @@ export interface IPlooClients {
   Name: string;
   CNPJ?: string;
   CPF?: string;
+  Email?: string;
+  Phones?: [{
+    PhoneNumber?: string,
+  }];
 }
