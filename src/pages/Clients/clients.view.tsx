@@ -11,6 +11,8 @@ import { useEffect, useState } from 'react';
 import { IPlooClients } from './clients.types';
 import { formatCpf } from '../../constants/convertCpf';
 import { formatCnpj } from '../../constants/convertCnpj';
+import { TableContainer } from '../../design_system/Molecules/Table/components/TableContainer/tablecontainer.styles';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 export default function Clients() {
   const navigate = useNavigate()
@@ -18,63 +20,67 @@ export default function Clients() {
   if (!validateUserkey) navigate('/')
 
   const [clients, setClients] = useState<IPlooClients[]>([])
-  const [currentPage, setCurrentPage] = useState(1);
+  const [skipValue, setSkipValue] = useState<number>(0);
+  const [hasMore, setHasMore] = useState<boolean>(true)
   const [searchValue, setSearchValue] = useState<string>('');
 
-
   useEffect(() => {
-
-    getClients(validateUserkey || '')
-      .then((data) => {
-        setClients(data.value);
-      })
+    getClients(`Contacts?$top=30&$skip=${skipValue}`,validateUserkey || '')
+    .then((data) => {
+      if (data.value.length > 0) {
+        setClients((prevClients) => [...prevClients, ...data.value]);
+      } else {
+        setHasMore(false);
+      }
+    })
       .catch((error) => {
         console.error('Erro ao buscar clientes:', error);
       });
-  }, []);
-
-  console.log(clients)
-
-  
-  // useEffect(() => {
-  //   const clients = getClients(validateUserkey || "") {
-      
-
-  //     console.log(characters);
-  //     // verifica se existe algum duplicado, eu tava com um bug de duplicar as primeiras requisições
-  //     setCharacters(prevState => [...prevState, ...characters.filter((character:any) => !prevState.some(prevCharacter => prevCharacter.id === character.id))]);
-  //   }
-  //   getCharacters();
-  // }, [currentPage]);
 
 
- 
+  }, [skipValue]);
+
+  const fetchMoreData = () => {
+    return setSkipValue(skipValue + 30)
+  }
 
   return (
     <>
       <SearchBar />
-      <Table cellspacing={'0'}>
-        <TableHeader>
-          <TableRow>
-            <TableHeaderData>
-              Nome
-            </TableHeaderData>
-            <TableHeaderData>
-              Id
-            </TableHeaderData>
-            <TableHeaderData>
-              CNPJ/CPF
-            </TableHeaderData>
-          </TableRow>
-        </TableHeader>
-        {clients.map((client) => (
-          <TableRow key={client.Id}>
-            <TableData>{client.Id}</TableData>
-            <TableData>{client.Name}</TableData>
-            {client.CNPJ ? <TableData>{formatCnpj(client.CNPJ)}</TableData> : <TableData>{formatCpf(client.CPF || '')}</TableData>}
-          </TableRow>
-        ))}
-      </Table>
+        <TableContainer id="scrollableDiv">
+            <InfiniteScroll 
+              hasMore={hasMore}
+              next={fetchMoreData}
+              dataLength={clients.length}
+              loader={<p>Carregando...</p>}
+              scrollableTarget="scrollableDiv"
+            >
+          <Table cellspacing={'0'}>
+            <TableHeader>
+              <TableRow>
+                <TableHeaderData>
+                  Nome
+                </TableHeaderData>
+                <TableHeaderData>
+                  Id
+                </TableHeaderData>
+                <TableHeaderData>
+                  CNPJ/CPF
+                </TableHeaderData>
+              </TableRow>
+            </TableHeader>
+            {clients.map((client) => {
+              return (
+                <TableRow key={client.Id}>
+                  <TableData>{client.Id}</TableData>
+                  <TableData>{client.Name}</TableData>
+                  {client.CNPJ ? <TableData>{formatCnpj(client.CNPJ)}</TableData> : <TableData>{formatCpf(client.CPF || '')}</TableData>}
+                </TableRow>
+              )
+            })}
+          </Table>
+            </InfiniteScroll>
+        </TableContainer>
     </>
   )
 }

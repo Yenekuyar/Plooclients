@@ -16,8 +16,8 @@ interface IGetClientsResponse {
 }
 
 
-export function getClients(userkey: string): Promise<IGetClientsResponse> {
-  const response = clients.get<IGetClientsResponse>("Contacts", `${userkey}`);
+export function getClients(endpoint: string, userkey: string): Promise<IGetClientsResponse> {
+  const response = clients.get<IGetClientsResponse>(`${endpoint}`, `${userkey}`);
   response
     .then((json) => {
     const response = json.value;
