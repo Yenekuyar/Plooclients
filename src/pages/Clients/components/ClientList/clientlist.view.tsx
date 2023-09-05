@@ -2,6 +2,7 @@ import Table from "../../../../design_system/Molecules/Table/table.view";
 import TableRow from "../../../../design_system/Molecules/Table/components/TableRow/tablerow.view";
 import TableData from "../../../../design_system/Molecules/Table/components/TableData/tabledata.view";
 import SearchBar from "../../../../design_system/Molecules/SearchBar/searchbar.view";
+import ClientLink from "./components/ClientLink/clientlink.view";
 import TableHeader from "../../../../design_system/Molecules/Table/components/TableHeader/tableheader.view";
 import InfiniteScroll from "react-infinite-scroll-component";
 import TableHeaderData from "../../../../design_system/Molecules/Table/components/TableHeader/components/TableHeaderData/tableheaderdata.view";
@@ -13,12 +14,15 @@ import { TableContainer } from "../../../../design_system/Molecules/Table/compon
 import { TableHeaderRow } from "../../../../design_system/Molecules/Table/components/TableHeader/components/TableHeaderRow/tableheaderow.styles";
 import { validateUserkey } from "../../../../constants/userkey";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function ClientList() {
   const [clients, setClients] = useState<IPlooClients[]>([]);
   const [skipValue, setSkipValue] = useState<number>(0);
   const [hasMore, setHasMore] = useState<boolean>(true);
   const [searchValue, setSearchValue] = useState<string>("");
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     getClients(
@@ -40,6 +44,7 @@ export default function ClientList() {
   const fetchMoreData = () => {
     return setSkipValue(skipValue + 30);
   };
+
   return (
     <>
       <SearchBar />
@@ -65,19 +70,63 @@ export default function ClientList() {
               return (
                 <TableRow key={client.Id}>
                   <TableData>
-                    {client.Name}
+                    <ClientLink
+                      handleRowClick={() => {
+                        navigate(`${client.Id}`);
+                      }}
+                    >
+                      {client.Name}
+                    </ClientLink>
                   </TableData>
-                  <TableData>{client.Id}</TableData>
-                  {client.CNPJ ? (
-                    <TableData>{formatCnpj(client.CNPJ)}</TableData>
-                  ) : (
-                    <TableData>{formatCpf(client.CPF || "")}</TableData>
-                  )}
-                  <TableData>{client.Email}</TableData>
                   <TableData>
-                    {client.Phones && client.Phones.length > 0
-                      ? client.Phones[0].PhoneNumber
-                      : ""}
+                    <ClientLink
+                      handleRowClick={() => {
+                        navigate(`${client.Id}`);
+                      }}
+                    >
+                      {client.Id}
+                    </ClientLink>
+                  </TableData>
+                  {client.CNPJ ? (
+                    <TableData>
+                      <ClientLink
+                        handleRowClick={() => {
+                          navigate(`${client.Id}`);
+                        }}
+                      >
+                        {formatCnpj(client.CNPJ)}
+                      </ClientLink>
+                    </TableData>
+                  ) : (
+                    <TableData>
+                      <ClientLink
+                        handleRowClick={() => {
+                          navigate(`${client.Id}`);
+                        }}
+                      >
+                        {formatCpf(client.CPF || "")}
+                      </ClientLink>
+                    </TableData>
+                  )}
+                  <TableData>
+                    <ClientLink
+                      handleRowClick={() => {
+                        navigate(`${client.Id}`);
+                      }}
+                    >
+                      {client.Email}
+                    </ClientLink>
+                  </TableData>
+                  <TableData>
+                    <ClientLink
+                      handleRowClick={() => {
+                        navigate(`${client.Id}`);
+                      }}
+                    >
+                      {client.Phones && client.Phones.length > 0
+                        ? client.Phones[0].PhoneNumber
+                        : ""}
+                    </ClientLink>
                   </TableData>
                 </TableRow>
               );

@@ -14,9 +14,9 @@ const router = createBrowserRouter(
       <Route index element={<Home />}></Route>
       <Route path="/clients" element={<Clients />}>
         <Route path="" element={<ClientList />} />
-        <Route path=":id" element={<ClientModal />} />
+        <Route id="client-modal" path=":id" element={<ClientModal />} />
       </Route>
-      
+
       <Route path="*" element={<NotFound />}/>
     </Route>
   )
