@@ -1,7 +1,9 @@
-import { validateUserkey } from "../../../constants/userkey";
 import Server from "../../../server/server.controller";
 
-const apiUrl = process.env.REACT_APP_CENTRAL_API_URL || "";
+// eu ia fazer por .env mas quando baixassem o projeto ia dar erro então hardcodei.
+// const apiUrl = process.env.REACT_APP_CENTRAL_API_URL || "";
+
+const apiUrl = "https://public-api2.ploomes.com/";
 const clients = new Server(apiUrl);
 
 interface IGetClientsResponse {

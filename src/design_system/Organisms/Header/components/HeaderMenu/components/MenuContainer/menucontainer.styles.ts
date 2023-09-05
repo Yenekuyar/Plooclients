@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { StyledContainer } from '../../../../../../Atoms/Container/container.styles';
-import { ItemContainer } from './components/ItemContainer/itemcontainer.styles';
+import { MenuItemContainer } from './components/MenuItemContainer/menuitemcontainer.styles';
 
 export const MenuContainer = styled(StyledContainer)`
   position: relative;
@@ -9,7 +9,7 @@ export const MenuContainer = styled(StyledContainer)`
   margin: 0;
   padding: 0;
 
-  &:hover ${ItemContainer} {
+  &:hover ${MenuItemContainer} {
     display: block;
   }
 `

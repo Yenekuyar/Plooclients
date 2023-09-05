@@ -16,8 +16,10 @@ export default function AuthForm() {
   }
 
   const salvaKey = () => {
+    if(userkey){
       localStorage.setItem('userkey', userkey)
       navigate('clients')
+    }
   }
 
   return (

@@ -1,4 +1,3 @@
-import Header from './design_system/Organisms/Header/header.view';
 import { Outlet } from 'react-router-dom'
 import { GlobalStyles } from './themes/global.styles';
 import { ThemeProvider } from 'styled-components';
