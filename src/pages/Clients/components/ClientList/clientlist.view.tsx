@@ -26,8 +26,10 @@ export default function ClientList() {
   const navigate = useNavigate();
   const userkey = validateUserkey();
 
+  //[TODO] Debouncer pra evitar 15 request por letra q eu to digitando
   useEffect(() => {
-    if (userkey && !searchValue) {
+    if (userkey && searchValue == "") {
+      setHasMore(true);
       getClients(
         `Contacts?$top=30&$skip=${skipValue}&$expand=Phones`,
         userkey || ""
@@ -39,6 +41,7 @@ export default function ClientList() {
         }
       });
     } else if (searchValue) {
+      setHasMore(true);
       const phoneConditional = (searchParam: string) => {
         if (containsOnlyNumbers(searchParam)) {
           return `Phones/any(p:+p/SearchPhoneNumber+eq+${searchParam})`;
@@ -48,7 +51,7 @@ export default function ClientList() {
       };
 
       getClients(
-        `Contacts?$filter=contains(Name,%27${searchValue}%27)+or+contains(Email,%27${searchValue}%27)+or+contains(Register,%27${searchValue}%27)+or+${phoneConditional(searchValue)}&$top=30&$skip=${skipValue}`,
+        `Contacts?$filter=contains(Name,%27${searchValue}%27)+or+contains(Email,%27${searchValue}%27)+or+contains(Register,%27${searchValue}%27)+or+${phoneConditional(searchValue)}&$top=30&$skip=${skipValue}&$expand=Phones`,
         userkey || ""
       ).then((data) => {
         if (data.value.length > 0) {
@@ -61,13 +64,14 @@ export default function ClientList() {
   }, [skipValue, searchValue]);
 
   const handleSearchValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value);
     if (searchValue) {
       setSkipValue(0);
       setClients([]);
     } else {
       setSkipValue(0);
+      setClients([]);
     }
-    setSearchValue(e.target.value);
   };
 
   const fetchMoreData = () => {
