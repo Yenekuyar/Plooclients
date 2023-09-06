@@ -1,6 +1,5 @@
 import Server from "../../../server/server.controller";
 
-
 interface IGetClientsResponse {
   value: [
     {

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
 import Container from "../../Atoms/Container/container.view";
 import Label from "../../Atoms/Label/label.view";
+import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { StyledAuthForm } from "./authform.styles";
 import { AuthFormButton } from "./components/AuthFormButton/authformbutton.styles";
@@ -13,12 +13,16 @@ export default function AuthForm() {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserkey(e.target.value)
+    localStorage.setItem('userkey', e.target.value)
   }
 
+  const navigateToClientPage = () => {
+    navigate('clients')
+  }
+  
   const salvaKey = () => {
-    if(userkey){
-      localStorage.setItem('userkey', userkey)
-      navigate('clients')
+    if(userkey !== null){
+      navigateToClientPage()
     }
   }
 

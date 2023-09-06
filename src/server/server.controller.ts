@@ -25,9 +25,9 @@ class Server {
         const json = response.data;
         return json;
       })
-      // .catch((error) => {
-      //   alert(error);
-      // });
+      .catch((error) => {
+        alert(error);
+      });
     return response;
   }
 
