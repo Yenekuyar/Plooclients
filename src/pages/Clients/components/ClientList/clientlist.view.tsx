@@ -15,46 +15,60 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { validateUserkey } from "../../../../design_system/Atoms/Container/getUserkey";
 import { StyledSearchBar } from "../../../../design_system/Molecules/SearchBar/searchbar.styles";
+import { containsOnlyNumbers } from "../../../../constants/containsOnlyNumbers";
 
 export default function ClientList() {
   const [clients, setClients] = useState<IPlooClients[]>([]);
   const [skipValue, setSkipValue] = useState<number>(0);
   const [hasMore, setHasMore] = useState<boolean>(true);
   const [searchValue, setSearchValue] = useState<string>("");
-  const [infiniteScrollLock, setInfiniteScrollLock] = useState<boolean>(false)
 
   const navigate = useNavigate();
-  const userkey = validateUserkey()
-
-
+  const userkey = validateUserkey();
 
   useEffect(() => {
-    if (userkey && !infiniteScrollLock) {
+    if (userkey && !searchValue) {
       getClients(
         `Contacts?$top=30&$skip=${skipValue}&$expand=Phones`,
         userkey || ""
-      )
-        .then((data) => {
-          if (data.value.length > 0) {
-            setClients((prevClients) => [...prevClients, ...data.value]);
-          } else {
-            setHasMore(false);
-          }
-        })
-        .catch((error) => {
-          console.error("Erro ao buscar clientes:", error);
-        });
-    } else if (infiniteScrollLock) {
+      ).then((data) => {
+        if (data.value.length > 0) {
+          setClients((prevClients) => [...prevClients, ...data.value]);
+        } else {
+          setHasMore(false);
+        }
+      });
+    } else if (searchValue) {
+      const phoneConditional = (searchParam: string) => {
+        if (containsOnlyNumbers(searchParam)) {
+          return `Phones/any(p:+p/SearchPhoneNumber+eq+${searchParam})`;
+        } else {
+          return `contains(IdentityDocument,%27${searchParam}%27)`;
+        }
+      };
+
       getClients(
-        `Contacts`,
+        `Contacts?$filter=contains(Name,%27${searchValue}%27)+or+contains(Email,%27${searchValue}%27)+or+contains(Register,%27${searchValue}%27)+or+${phoneConditional(searchValue)}&$top=30&$skip=${skipValue}`,
         userkey || ""
-      )
+      ).then((data) => {
+        if (data.value.length > 0) {
+          setClients((prevClients) => [...prevClients, ...data.value]);
+        } else {
+          setHasMore(false);
+        }
+      });
     }
-  }, [skipValue]);
+  }, [skipValue, searchValue]);
 
   const handleSearchValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(e.target.value)
-  }
+    if (searchValue) {
+      setSkipValue(0);
+      setClients([]);
+    } else {
+      setSkipValue(0);
+    }
+    setSearchValue(e.target.value);
+  };
 
   const fetchMoreData = () => {
     return setSkipValue(skipValue + 30);
@@ -62,8 +76,8 @@ export default function ClientList() {
 
   return (
     <>
-      <StyledSearchBar 
-        placeholder="Busque um cliente por um dos dados da tabela..." 
+      <StyledSearchBar
+        placeholder="Busque clientes por Nome, Email ou Número de Telefone"
         value={searchValue}
         onChange={handleSearchValue}
       />
@@ -86,6 +100,7 @@ export default function ClientList() {
               </TableHeaderRow>
             </TableHeader>
             <tbody>
+              {/* {clients.length == 0 && unfilteredLock && <p>Nada encontrado...</p>} */}
               {clients.map((client) => {
                 return (
                   <TableRow key={client.Id}>
