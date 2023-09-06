@@ -7,4 +7,5 @@ export interface IPlooClients {
   Phones?: [{
     PhoneNumber?: string,
   }];
+  StreetAddress?: string,
 }

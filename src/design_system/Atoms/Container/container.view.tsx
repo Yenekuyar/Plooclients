@@ -3,7 +3,15 @@ import { IContainerProps } from "./container.types";
 
 export default function Container(props: IContainerProps) {
   return (
-    <StyledContainer>
+    <StyledContainer 
+      display={props.display}
+      justifyContent={props.justifyContent}
+      flexDirection={props.flexDirection}
+      alignItems={props.alignItems}
+      width={props.width}
+      flexWrap={props.flexWrap}
+      flexBasis={props.flexBasis}
+    >
         {props.children}
     </StyledContainer>
   )
