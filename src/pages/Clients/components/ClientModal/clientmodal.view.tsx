@@ -74,6 +74,10 @@ export default function ClientModal() {
                     <Text>{client.Name}</Text>
                   </Container>
                   <Container flexBasis="40%">
+                    <Label>Tipo do Cliente</Label>
+                    <Text>{client.TypeId == 1 ? "Empresa" : "Pessoa"}</Text>
+                  </Container>
+                  <Container flexBasis="40%">
                     <Label>Id</Label>
                     <Text>{client.Id}</Text>
                   </Container>
@@ -92,24 +96,43 @@ export default function ClientModal() {
                   {client.CNPJ ? (
                     <Container flexBasis="40%">
                       <Label>CNPJ</Label>
-                      <Text>{formatCnpj(client.CNPJ)}</Text>
+                      <Text>{formatCnpj(client.CNPJ || "-") || "-"}</Text>
                     </Container>
                   ) : (
                     <Container flexBasis="40%">
                       <Label>CPF</Label>
-                      <Text>{formatCpf(client.CPF || "")}</Text>
+                      <Text>{formatCpf(client.CPF || "-") || "-"}</Text>
                     </Container>
                   )}
                   <Container flexBasis="40%">
+                    <Label>Bairro</Label>
+                    <Text>{client.Neighborhood || "-"}</Text>
+                  </Container>
+                  <Container flexBasis="40%">
                     <Label>Endereço</Label>
-                    <Text>{client.StreetAddress}</Text>
+                    <Text>{client.StreetAddress || "-"}</Text>
+                  </Container>
+                  <Container flexBasis="40%">
+                    <Label>Número</Label>
+                    <Text>{client.StreetAddressNumber || "-"}</Text>
+                  </Container>
+                  <Container flexBasis="40%">
+                    <Label>CEP</Label>
+                    <Text>{client.ZipCode || "-"}</Text>
                   </Container>
                 </>
               );
             })}
           </Container>
         </Form>
-        <Container>
+        <Container
+          display="flex"
+          justifyContent="space-around"
+          flexDirection="row"
+          flexWrap="wrap"
+          width="100%"
+          alignItems="center"
+        >
           <StyledButton onClick={handleUpdateClick} type={"button"}>
             Atualizar
           </StyledButton>

@@ -16,6 +16,8 @@ import { useNavigate } from "react-router-dom";
 import { validateUserkey } from "../../../../design_system/Atoms/Container/getUserkey";
 import { StyledSearchBar } from "../../../../design_system/Molecules/SearchBar/searchbar.styles";
 import { containsOnlyNumbers } from "../../../../constants/containsOnlyNumbers";
+import useDebounce from "../../../../hooks/useDebounce";
+
 
 export default function ClientList() {
   const [clients, setClients] = useState<IPlooClients[]>([]);
@@ -23,6 +25,8 @@ export default function ClientList() {
   const [hasMore, setHasMore] = useState<boolean>(true);
   const [searchValue, setSearchValue] = useState<string>("");
 
+  const debouncedSearchValue = useDebounce(searchValue, 500)
+  const debouncedSkipValue = useDebounce(skipValue, 500)
   const navigate = useNavigate();
   const userkey = validateUserkey();
 
@@ -40,7 +44,9 @@ export default function ClientList() {
           setHasMore(false);
         }
       });
-    } else if (searchValue) {
+    } 
+    
+    if (debouncedSearchValue) {
       setHasMore(true);
       const phoneConditional = (searchParam: string) => {
         if (containsOnlyNumbers(searchParam)) {
@@ -51,7 +57,7 @@ export default function ClientList() {
       };
 
       getClients(
-        `Contacts?$filter=contains(Name,%27${searchValue}%27)+or+contains(Email,%27${searchValue}%27)+or+contains(Register,%27${searchValue}%27)+or+${phoneConditional(searchValue)}&$top=30&$skip=${skipValue}&$expand=Phones`,
+        `Contacts?$filter=contains(Name,%27${debouncedSearchValue}%27)+or+contains(Email,%27${debouncedSearchValue}%27)+or+contains(Register,%27${debouncedSearchValue}%27)+or+${phoneConditional(debouncedSearchValue)}&$top=30&$skip=${skipValue}&$expand=Phones`,
         userkey || ""
       ).then((data) => {
         if (data.value.length > 0) {
@@ -61,7 +67,7 @@ export default function ClientList() {
         }
       });
     }
-  }, [skipValue, searchValue]);
+  }, [debouncedSkipValue, debouncedSearchValue]);
 
   const handleSearchValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);

@@ -8,4 +8,8 @@ export interface IPlooClients {
     PhoneNumber?: string,
   }];
   StreetAddress?: string,
+  StreetAddressNumber?: string;
+  Neighborhood?: string;
+  TypeId?: number;
+  ZipCode?: number;
 }
