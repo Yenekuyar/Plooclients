@@ -11,7 +11,10 @@ export default function Container(props: IContainerProps) {
       width={props.width}
       flexWrap={props.flexWrap}
       flexBasis={props.flexBasis}
-    >
+      maxHeight={props.maxHeight}
+      overflow={props.overflow}   
+      backgroundColor={props.backgroundColor}
+      >
         {props.children}
     </StyledContainer>
   )

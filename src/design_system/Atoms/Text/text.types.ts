@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 
 export interface ITextProps {
-    children: ReactNode
-    textAlign?: string
+  children: ReactNode;
+  textAlign?: string;
+  contentEditable?: boolean;
 }

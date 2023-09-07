@@ -20,7 +20,8 @@ export const GlobalStyles = createGlobalStyle`
         width: 100%;
         height: 100%;
         overflow: hidden;
-        background-color: ${props => props.theme.pallete.primary.grey6};
+        background-color: ${props => props.theme.pallete.primary.secondary};
+        color: ${props => props.theme.pallete.primary.main};
         -webkit-font-smoothing: antialiased;
         font-family: 'Abel', sans-serif;
     }

@@ -28,7 +28,9 @@ export default function AuthForm() {
 
   return (
     <StyledAuthForm>
-      <Container>
+      <Container
+        backgroundColor
+      >
         <Label>Para acessar a página preencha com uma Userkey válida de um Usuário de Integração da Ploomes</Label>
         <AuthFormInput
           type={""}

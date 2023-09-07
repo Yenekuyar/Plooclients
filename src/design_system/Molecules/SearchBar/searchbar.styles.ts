@@ -6,10 +6,19 @@ export const StyledSearchBar = styled.input`
   background-size: 20px;
   background-repeat: no-repeat;
   background-position: 5px center;
-  border: 1px solid ${props => props.theme.pallete.primary.text};
+  border: 1px solid ${props => props.theme.pallete.primary.main};
   background-color: ${props => props.theme.pallete.primary.secondary};
-  box-shadow: inset 7px 10px 29px -20px ${props => props.theme.pallete.primary.text};
+  color: ${props => props.theme.pallete.primary.main};
+  box-shadow: inset 7px 10px 29px -20px ${props => props.theme.pallete.primary.main};
   height: 40px;
   margin: 12px;
-  width: 95%;
+  width: 96%;
+
+  &:active {
+    border: 1px solid ${props => props.theme.pallete.primary.main};
+  }
+
+  &::placeholder {
+    color: ${props => props.theme.pallete.primary.main};
+  }
 `

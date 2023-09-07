@@ -5,6 +5,8 @@ import { MenuItemContainer } from './components/MenuItemContainer/menuitemcontai
 export const MenuContainer = styled(StyledContainer)`
   position: relative;
   display: inline-block;
+  width: 100px;
+  max-width: 100px;
   height: 100%;
   margin: 0;
   padding: 0;

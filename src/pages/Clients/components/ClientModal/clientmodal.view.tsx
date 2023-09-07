@@ -1,7 +1,6 @@
 import Text from "../../../../design_system/Atoms/Text/text.view";
 import Form from "../../../../design_system/Organisms/Form/form.view";
 import Label from "../../../../design_system/Atoms/Label/label.view";
-import Input from "../../../../design_system/Atoms/Input/input.view";
 import Button from "../../../../design_system/Atoms/Button/button.view";
 import Container from "../../../../design_system/Atoms/Container/container.view";
 import { useNavigate, useParams } from "react-router-dom";
@@ -15,6 +14,7 @@ import { StyledButton } from "../../../../design_system/Atoms/Button/button.styl
 export default function ClientModal() {
   const [selectedClient, setSelectedClient] = useState<IPlooClients[]>([]);
   const [clientUpdater, setClientUpdater] = useState<number>(0);
+  const [showConfirmation, setShowConfirmation] = useState(false);
 
   const client = useParams();
   const clientId = client.id;
@@ -40,15 +40,7 @@ export default function ClientModal() {
   }
 
   return (
-    <>
-      <button
-        className="testepralaruda"
-        onClick={() => {
-          navigate("/clients");
-        }}
-      >
-        Botão
-      </button>
+    <Container overflow="scroll" maxHeight="90%">
       <Container
         display="flex"
         justifyContent="center"
@@ -71,7 +63,7 @@ export default function ClientModal() {
                 <>
                   <Container flexBasis="40%">
                     <Label>Nome</Label>
-                    <Text>{client.Name}</Text>
+                    <Text contentEditable>{client.Name}</Text>
                   </Container>
                   <Container flexBasis="40%">
                     <Label>Tipo do Cliente</Label>
@@ -96,7 +88,7 @@ export default function ClientModal() {
                   {client.CNPJ ? (
                     <Container flexBasis="40%">
                       <Label>CNPJ</Label>
-                      <Text>{formatCnpj(client.CNPJ || "-") || "-"}</Text>
+                      <Text contentEditable>{formatCnpj(client.CNPJ || "-") || "-"}</Text>
                     </Container>
                   ) : (
                     <Container flexBasis="40%">
@@ -120,26 +112,55 @@ export default function ClientModal() {
                     <Label>CEP</Label>
                     <Text>{client.ZipCode || "-"}</Text>
                   </Container>
+                  <Container flexBasis="100%">
+                    <Container
+                      display="flex"
+                      justifyContent="space-around"
+                      flexDirection="row"
+                      flexWrap="wrap"
+                      width="100%"
+                      alignItems="center"
+                    >
+                      <Container flexBasis="20%">
+                        <StyledButton
+                          width="100%"
+                          onClick={handleUpdateClick}
+                          type={"button"}
+                        >
+                          Atualizar
+                        </StyledButton>
+                      </Container>
+                      <Container flexBasis="20%">
+                        <Button type={"button"} width="100%">
+                          Editar
+                        </Button>
+                      </Container>
+                      <Container flexBasis="20%">
+                        <StyledButton 
+                          type={"button"} 
+                          width="100%"
+                        >
+                          Deletar
+                        </StyledButton>
+                      </Container>
+                      <Container flexBasis="0%" display="absolute">
+                        <StyledButton
+                          width="100%"
+                          onClick={() => {
+                            navigate("/clients");
+                          }}
+                        >
+                          Voltar
+                        </StyledButton>
+                      </Container>
+                    </Container>
+                  </Container>
                 </>
               );
             })}
           </Container>
         </Form>
-        <Container
-          display="flex"
-          justifyContent="space-around"
-          flexDirection="row"
-          flexWrap="wrap"
-          width="100%"
-          alignItems="center"
-        >
-          <StyledButton onClick={handleUpdateClick} type={"button"}>
-            Atualizar
-          </StyledButton>
-          <Button type={"button"}>Editar</Button>
-          <Button type={"button"}>Deletar</Button>
-        </Container>
       </Container>
-    </>
+    </Container>
   );
 }

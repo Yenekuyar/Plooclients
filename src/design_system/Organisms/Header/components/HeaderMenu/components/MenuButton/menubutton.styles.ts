@@ -6,6 +6,7 @@ export const MenuButton = styled(StyledButton)`
   margin: 0;
   height: 100%;
   width: 100px;
+  max-width: 100px;
   border-radius: 0;
   text-decoration: none;
   display: block;

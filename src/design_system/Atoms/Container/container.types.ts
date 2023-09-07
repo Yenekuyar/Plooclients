@@ -9,6 +9,9 @@ export interface ISContainerProps {
   width?: string;
   flexWrap?: string;
   flexBasis?: string;
+  overflow?: string;
+  backgroundColor?: boolean
+  maxHeight?: string;
 }
 
 export interface IContainerProps {
@@ -20,4 +23,7 @@ export interface IContainerProps {
   width?: string;
   flexWrap?: string;
   flexBasis?: string;
+  overflow?: string;
+  backgroundColor?: boolean;
+  maxHeight?: string;
 };

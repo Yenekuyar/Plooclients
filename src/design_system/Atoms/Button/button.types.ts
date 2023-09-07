@@ -1,6 +1,13 @@
-import { ReactNode } from 'react'
+import { ReactNode } from "react";
 
-export type IButtonProps = {
-  type: 'button' | 'submit' | 'reset',
-  children: ReactNode
+export interface IButtonProps {
+  type: "button" | "submit" | "reset";
+  children: ReactNode;
+  width?: string;
+  bgImage?: string;
+}
+
+export interface ISButtonProps {
+  width?: string;
+  bgImage?: string;
 }

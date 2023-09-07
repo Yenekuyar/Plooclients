@@ -9,6 +9,9 @@ export const StyledContainer = styled.div<ISContainerProps>`
   flex-direction: ${props => props.flexDirection || 'column'};
   width: 100%;
   text-align: center;
+  overflow: ${props => props.overflow || 'visible'};
   flex-wrap: ${props => props.flexWrap || 'wrap'};
   flex-basis: ${props => props.flexBasis || '100%'};
+  background-color: ${props => props.backgroundColor || false ? props.theme.pallete.primary.main : props.theme.pallete.primary.secondary};
+  max-height: ${props => props.maxHeight || ''};
 `
