@@ -8,11 +8,15 @@ export const StyledContainer = styled.div<ISContainerProps>`
   justify-content: ${props => props.justifyContent || 'normal'};
   align-items: ${props => props.alignItems};
   flex-direction: ${props => props.flexDirection || 'column'};
-  width: 100%;
+  width: ${props => props.width || '100%'};
   text-align: center;
   overflow-y: ${props => props.overflowY || 'visible'};
+  overflow-x: ${props => props.overflowX || 'visible'};
   flex-wrap: ${props => props.flexWrap || 'wrap'};
   flex-basis: ${props => props.flexBasis || '100%'};
   background-color: ${props => props.backgroundColor || false ? props.theme.pallete.primary.main : props.theme.pallete.primary.secondary};
   max-height: ${props => props.maxHeight || ''};
+  position: ${props => props.position};
+  top: ${props => props.top};
+  left: ${props => props.left};
 `

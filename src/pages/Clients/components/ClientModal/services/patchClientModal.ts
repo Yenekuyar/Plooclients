@@ -1,17 +1,5 @@
 import Server from "../../../../../server/server.controller";
 
-interface IPatchClientResponse {
-  Name?: string;
-  Email?: string;
-  CNPJ?: string;
-  CPF?: string;
-  StreetAddress?: string;
-  StreetAddressNumber?: any;
-  Neighborhood?: string;
-  ZipCode?: number;
-  Phones?: Phone[];
-}
-
 interface IPatchClientBody {
     Name?: string;
     Email?: string;

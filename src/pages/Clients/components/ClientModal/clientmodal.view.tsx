@@ -11,6 +11,8 @@ import { formatCnpj } from "../../../../constants/convertCnpj";
 import { StyledButton } from "../../../../design_system/Atoms/Button/button.styles";
 import { StyledInput } from "../../../../design_system/Atoms/Input/input.styles";
 import { patchClient } from "./services/patchClientModal";
+import { DeleteForm } from "../../../../design_system/Molecules/DeleteForm/deleteForm.styles";
+import { deleteClient } from "./services/deleteClientModal";
 
 export default function ClientModal() {
   const [selectedClient, setSelectedClient] = useState<IPlooClients[]>([]);
@@ -22,11 +24,9 @@ export default function ClientModal() {
   const [clientPhone, setClientPhone] = useState<string>("");
   const [clientZipCode, setClientZipCode] = useState<string>("");
   const [clientStreetAddress, setClientStreetAddress] = useState<string>("");
-  const [clientStreetAddressNumber, setClientStreetAddressNumber] =
-    useState<string>("");
+  const [clientStreetAddressNumber, setClientStreetAddressNumber] = useState<string>("");
   const [clientNeighborhood, setClientNeighborhood] = useState<string>("");
-  const [editableFieldsToggle, setEditableFieldsToggle] =
-    useState<boolean>(false);
+  const [editableFieldsToggle, setEditableFieldsToggle] = useState<boolean>(false);
   const [showConfirmation, setShowConfirmation] = useState<boolean>(false);
 
   const client = useParams();
@@ -109,35 +109,60 @@ export default function ClientModal() {
   };
 
   const handleSubmitChanges = () => {
-
     const body = {
-      Name: clientName !== '' ? clientName : selectedClient[0].Name,
-      Email: clientEmail !== '' ? clientEmail : selectedClient[0].Email,
-      CNPJ: clientCnpj !== '' ? clientCnpj : selectedClient[0].CNPJ,
-      CPF: clientCpf !== '' ? clientCpf : selectedClient[0].CPF,
-      StreetAddress: clientStreetAddress !== '' ? clientStreetAddress : selectedClient[0].StreetAddress,
-      StreetAddressNumber: clientStreetAddressNumber !== '' ? clientStreetAddressNumber : selectedClient[0].StreetAddressNumber,
-      Neighborhood: clientNeighborhood !== '' ? clientNeighborhood : selectedClient[0].Neighborhood,
-      ZipCode: clientZipCode !== null ? clientZipCode : selectedClient[0].ZipCode,
-      Phones: selectedClient[0].Phones ? [
-        {
-          PhoneNumber: clientPhone || selectedClient[0].Phones?.[0].PhoneNumber || '',
-        },
-      ] : [],
+      Name: clientName !== "" ? clientName : selectedClient[0].Name,
+      Email: clientEmail !== "" ? clientEmail : selectedClient[0].Email,
+      CNPJ: clientCnpj !== "" ? clientCnpj : selectedClient[0].CNPJ,
+      CPF: clientCpf !== "" ? clientCpf : selectedClient[0].CPF,
+      StreetAddress:
+        clientStreetAddress !== ""
+          ? clientStreetAddress
+          : selectedClient[0].StreetAddress,
+      StreetAddressNumber:
+        clientStreetAddressNumber !== ""
+          ? clientStreetAddressNumber
+          : selectedClient[0].StreetAddressNumber,
+      Neighborhood:
+        clientNeighborhood !== ""
+          ? clientNeighborhood
+          : selectedClient[0].Neighborhood,
+      ZipCode:
+        clientZipCode !== null ? clientZipCode : selectedClient[0].ZipCode,
+      Phones: selectedClient[0].Phones
+        ? [
+            {
+              PhoneNumber:
+                clientPhone || selectedClient[0].Phones?.[0].PhoneNumber || "",
+            },
+          ]
+        : [],
     };
-
-    console.log(body)
 
     patchClient(
       `Contacts(${clientId})?$expand=Phones`,
       validateUserkey || "",
       body
-    )
-    //setEditableFieldsToggle(false)
+    );
+
+    setClientUpdater(clientUpdater + 1);
+    setEditableFieldsToggle(false);
   };
 
+  const handleDelete = () => {
+    deleteClient(`Contacts(${clientId})`, validateUserkey || "");
+    navigate("/clients")
+  };
+
+  function handleDeleteClick() {
+    setShowConfirmation(true);
+  }
+
+  function handleCancelDeleteClick() {
+    setShowConfirmation(false);
+  }
+
   return (
-    <Container overflowY="scroll" maxHeight="90%">
+    <Container overflowY="scroll" overflowX="hidden" maxHeight="90%">
       <Container
         display="flex"
         justifyContent="center"
@@ -180,7 +205,7 @@ export default function ClientModal() {
                       <Text>{client.Name}</Text>
                     ) : (
                       <StyledInput
-                        placeholder={client.Name || '-'}
+                        placeholder={client.Name || "-"}
                         value={clientName}
                         onChange={handleNameInputChange}
                         width={"200px"}
@@ -201,7 +226,7 @@ export default function ClientModal() {
                       <Text>{client.Email || "-"}</Text>
                     ) : (
                       <StyledInput
-                        placeholder={client.Email || '-'}
+                        placeholder={client.Email || "-"}
                         value={clientEmail}
                         onChange={handleEmailInputChange}
                         width={"200px"}
@@ -254,7 +279,7 @@ export default function ClientModal() {
                         <Text>{formatCnpj(client.CNPJ || "-") || "-"}</Text>
                       ) : (
                         <StyledInput
-                          placeholder={formatCnpj(client.CNPJ || '-') || '-'}
+                          placeholder={formatCnpj(client.CNPJ || "-") || "-"}
                           value={clientCnpj}
                           onChange={handleCnpjInputChange}
                           type={"text"}
@@ -300,7 +325,7 @@ export default function ClientModal() {
                       <Text>{client.Neighborhood || "-"}</Text>
                     ) : (
                       <StyledInput
-                        placeholder={client.Neighborhood || '-'}
+                        placeholder={client.Neighborhood || "-"}
                         value={clientNeighborhood}
                         onChange={handleNeighborhoodInputChange}
                         type={"text"}
@@ -322,7 +347,7 @@ export default function ClientModal() {
                       <Text>{client.StreetAddress || "-"}</Text>
                     ) : (
                       <StyledInput
-                        placeholder={client.StreetAddress || '-'}
+                        placeholder={client.StreetAddress || "-"}
                         value={clientStreetAddress}
                         onChange={handleStreetAddressInputChange}
                         type={"text"}
@@ -344,7 +369,7 @@ export default function ClientModal() {
                       <Text>{client.StreetAddressNumber || "-"}</Text>
                     ) : (
                       <StyledInput
-                        placeholder={client.StreetAddressNumber || '-'}
+                        placeholder={client.StreetAddressNumber || "-"}
                         value={clientStreetAddressNumber}
                         onChange={handleStreetAddressNumberInputChange}
                         type={"text"}
@@ -366,7 +391,7 @@ export default function ClientModal() {
                       <Text>{client.ZipCode || "-"}</Text>
                     ) : (
                       <StyledInput
-                        placeholder={`${client.ZipCode || '-'}`}
+                        placeholder={`${client.ZipCode || "-"}`}
                         value={clientZipCode}
                         type="number"
                         onChange={handleZipcodeInputChange}
@@ -403,7 +428,11 @@ export default function ClientModal() {
                           </StyledButton>
                         </Container>
                         <Container flexBasis="20%">
-                          <StyledButton type={"button"} width="100%">
+                          <StyledButton
+                            onClick={handleDeleteClick}
+                            type={"button"}
+                            width="100%"
+                          >
                             Deletar
                           </StyledButton>
                         </Container>
@@ -454,6 +483,29 @@ export default function ClientModal() {
           </Container>
         </Form>
       </Container>
+      {showConfirmation && (
+        <DeleteForm>
+          <Container
+            display="flex"
+            justifyContent="space-around"
+            flexDirection="row"
+            flexWrap="wrap"
+            width="50%"
+            alignItems="center"
+            position="fixed"
+            top="40%"
+            left="25%"
+          >
+            <Container flexBasis="100%">
+              <Text>Tem certeza que quer deletar esse item?</Text>
+            </Container>
+            <StyledButton width="200px" onClick={handleDelete}>Deletar</StyledButton>
+            <StyledButton onClick={handleCancelDeleteClick} width="200px">
+              Cancelar
+            </StyledButton>
+          </Container>
+        </DeleteForm>
+      )}
     </Container>
   );
 }
