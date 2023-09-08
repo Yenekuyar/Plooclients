@@ -10,13 +10,14 @@ export const StyledButton = styled.button<ISButtonProps>`
   background-color: ${(props) => props.theme.pallete.primary.main2};
   background-image: ${(props) => props.bgImage};
   background-repeat: no-repeat;
-  color: ${(props) => props.theme.pallete.primary.secondary};
+  color: ${(props) => props.theme.pallete.primary.white};
   border: none;
   border-radius: 8px;
 
   &:hover {
     background-color: ${(props) => props.theme.pallete.primary.main};
-    color: ${(props) => props.theme.pallete.primary.text};
+    color: ${(props) => props.theme.pallete.primary.white};
+    border: 2px solid ${props => props.theme.pallete.primary.text};
   }
 
   &:active {

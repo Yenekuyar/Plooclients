@@ -1,6 +1,60 @@
 # Plooclients
 
-This is a project that consumes Ploomes API for Clients display.
+Esse é um projeto onde você terá visualização de todos os clientes da sua conta da Ploomes, podendo editá-los e deletá-los.
+
+# Autenticação
+
+Você pode se autenticar no aplicativo criando um usuário de integração na sua conta Ploomes e copiando a chave na tela inicial do aplicativo, e depois disso clicar no botão enviar, onde você guardará sua chave localmente, e logo após, entrará na página inicial.
+
+# Página Inicial
+
+Na página inicial você vai se deparar com uma listagem dos clientes, mostrando algumas informações básicas como Nome, Id, CNPJ ou CPF, E-mail e Telefone, você pode também clicar nesses clientes para entrar e ver mais informações ou buscar na barra.
+
+# Dark Mode 
+
+Ao lado direito do nome do aplicativo Plooclients, existe um botão que toggla o Dark Mode, podendo assim, deixar o aplicativo mais escuro para melhor leitura noturna.
+
+# Menu
+
+Ao lado esquerdo temos a opção de sair do aplicativo, que funciona como um logoff, e temos também um botão para ir à tela de criação de clientes.
+
+# Barra de Busca
+
+Acima da listagem temos uma barra de busca feita para buscar por Nome, Email ou Número de Telefone e CPF/CNPJ também.
+
+# Lista de Clientes
+
+A lista em si, é uma tabela que conta com um infinite scrolling para buscar cada vez mais clientes caso queira descer, e o infinite scrolling funciona também com a busca ativa.
+
+# Modal de Cliente
+
+Ao selecionar uma linha, você abre a página do cliente selecionado liberando algumas opções e revelando também informações do endereço do cliente e o tipo do cliente.
+
+## Ações do Modal de Cliente
+
+### Barra de Navegação
+
+Você dentro do modal de cliente, terá o parâmetro do Id na barra de navegação caso queira mandar para algum colega um cliente.
+
+### Botão de Edição
+
+Ao clicar no botão de edição você habilitará o modo edição, revelando inputs para preencher com valores desejados.
+
+Valores já preenchidos ficarão com um placeholder para identificar.
+
+Valores não preenchidos não serão alterados.
+
+### Botão de Deleção
+
+Ao clicar no botão de deleção, você abrirá um novo modal para confirmar a deleção do cliente em questão.
+
+### Botão de Voltar
+
+Caso esteja satisfeito com suas mudanças no cliente, poderá voltar a página de navegação de clientes ao clicar neste botão.
+
+### Botão de Atualizar
+
+Caso queira refrescar as informações do cliente, caso tenha feito alguma alteração no Ploomes ou quer verificar se alguém alterou no meio tempo que estava com a página aberta, pode clicar que outra requisição será feita, atualizando o cliente.
 
 
 # Getting Started with Create React App

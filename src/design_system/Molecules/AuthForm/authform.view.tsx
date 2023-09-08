@@ -1,10 +1,10 @@
 import Container from "../../Atoms/Container/container.view";
-import Label from "../../Atoms/Label/label.view";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { StyledAuthForm } from "./authform.styles";
 import { AuthFormButton } from "./components/AuthFormButton/authformbutton.styles";
 import { AuthFormInput } from "./components/AuthFormInput/authformlabel.styles";
+import { AuthFormLabel } from "./components/AuthFormLabel/authFormLabel.styles";
 
 export default function AuthForm() {
   const [userkey, setUserkey] = useState("");
@@ -29,10 +29,10 @@ export default function AuthForm() {
   return (
     <StyledAuthForm>
       <Container backgroundColor>
-        <Label>
+        <AuthFormLabel>
           Para acessar a página preencha com uma Userkey válida de um Usuário de
           Integração da Ploomes
-        </Label>
+        </AuthFormLabel>
         <AuthFormInput
           type={""}
           placeholder={"Insira sua User-Key aqui..."}

@@ -15,7 +15,7 @@ export const darkTheme = {
   name: 'dark',
   pallete: {
     primary: {
-      main: "#3f0151",
+      main: "#171717",
       main2: "#b284d7",
       secondary: "#242424",
       white: "#FFF",

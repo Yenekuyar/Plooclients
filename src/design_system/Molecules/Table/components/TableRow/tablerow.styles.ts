@@ -10,7 +10,7 @@ export const StyledTableRow = styled.tr`
 
   &:hover {
     background-color: ${props => props.theme.pallete.primary.main2};
-    color: ${props => props.theme.pallete.primary.text};
+    color: ${props => props.theme.pallete.primary.white};
   };
 
   &:active {
