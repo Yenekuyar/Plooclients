@@ -7,8 +7,7 @@ export interface ITextProps {
 }
 
 export interface ISTextProps {
-    children: ReactNode;
-    textAlign?: string;
-    contentEditable?: boolean;
-  }
-  
+  children: ReactNode;
+  textAlign?: string;
+  contentEditable?: boolean;
+}

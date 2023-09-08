@@ -1,3 +1,3 @@
 export interface ISearchBar {
-    placeholder?: string,
+  placeholder?: string;
 }

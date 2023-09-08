@@ -3,16 +3,16 @@ import { StyledTableRow } from "../../../TableRow/tablerow.styles";
 
 export const TableHeaderRow = styled(StyledTableRow)`
   cursor: default;
-  background-color: ${(props) => props.theme.pallete.primary.main2};
-  color: ${(props) => props.theme.pallete.primary.text};
+  background-color: ${(props) => props.theme.pallete.primary.main};
+  color: ${(props) => props.theme.pallete.primary.white};
 
   &:hover {
-    background-color: ${(props) => props.theme.pallete.primary.main2};
-    color: ${(props) => props.theme.pallete.primary.text};
+    background-color: ${(props) => props.theme.pallete.primary.main};
+    color: ${(props) => props.theme.pallete.primary.white};
   }
 
   &:active {
-    background-color: ${(props) => props.theme.pallete.primary.main2};
-    color: ${(props) => props.theme.pallete.primary.text};
+    background-color: ${(props) => props.theme.pallete.primary.main};
+    color: ${(props) => props.theme.pallete.primary.white};
   }
 `;

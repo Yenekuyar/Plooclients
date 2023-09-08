@@ -1,5 +1,5 @@
-import { StyledInput } from "./input.styles"
-import { IInputProps } from "./input.types"
+import { StyledInput } from "./input.styles";
+import { IInputProps } from "./input.types";
 
 export default function Input(props: IInputProps) {
   return (
@@ -9,5 +9,5 @@ export default function Input(props: IInputProps) {
       id={props.id}
       width={props.width}
     />
-  )
+  );
 }

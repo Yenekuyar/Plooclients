@@ -1,16 +1,16 @@
 
 import { GlobalStyles } from './themes/global.styles';
-import { ThemeProvider } from 'styled-components';
-import { lightTheme } from './themes/default.theme';
 import { Outlet } from 'react-router-dom';
+import { CustomThemeProvider } from './context/themeContext';
 
 export default function App() {
+
   return (
-    <ThemeProvider theme={lightTheme}>
+    <CustomThemeProvider>
       <GlobalStyles />
         <div className="App">
           <Outlet />
         </div>
-    </ThemeProvider>
+    </CustomThemeProvider>
   );
 }

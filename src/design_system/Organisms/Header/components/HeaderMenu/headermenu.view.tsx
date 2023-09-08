@@ -5,12 +5,12 @@ import { MenuItemContainer } from "./components/MenuContainer/components/MenuIte
 import { Link, useNavigate } from "react-router-dom";
 
 export default function HeaderMenu() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   function handleExit() {
     localStorage.removeItem("userkey");
 
-    navigate('/')
+    navigate("/");
   }
 
   return (
@@ -19,9 +19,7 @@ export default function HeaderMenu() {
       <MenuItemContainer>
         <MenuItemButton>Action</MenuItemButton>
         <MenuItemButton>Another action</MenuItemButton>
-        <MenuItemButton onClick={handleExit}>
-            Sair
-        </MenuItemButton>
+        <MenuItemButton onClick={handleExit}>Sair</MenuItemButton>
       </MenuItemContainer>
     </MenuContainer>
   );

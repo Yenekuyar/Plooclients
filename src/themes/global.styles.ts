@@ -21,7 +21,8 @@ export const GlobalStyles = createGlobalStyle`
         height: 100%;
         overflow: hidden;
         background-color: ${props => props.theme.pallete.primary.secondary};
-        color: ${props => props.theme.pallete.primary.main};
+        color: ${props => props.theme.pallete.primary.text};
+        font-weight: 500;
         -webkit-font-smoothing: antialiased;
         font-family: 'Abel', sans-serif;
     }

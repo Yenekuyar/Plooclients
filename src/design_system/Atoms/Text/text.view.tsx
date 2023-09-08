@@ -3,6 +3,8 @@ import { ITextProps } from "./text.types";
 
 export default function Text(props: ITextProps) {
   return (
-    <StyledText contentEditable={props.contentEditable}>{props.children}</StyledText>
-  )
+    <StyledText contentEditable={props.contentEditable}>
+      {props.children}
+    </StyledText>
+  );
 }

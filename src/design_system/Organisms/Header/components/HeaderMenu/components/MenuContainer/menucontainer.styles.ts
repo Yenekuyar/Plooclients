@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import { StyledContainer } from '../../../../../../Atoms/Container/container.styles';
-import { MenuItemContainer } from './components/MenuItemContainer/menuitemcontainer.styles';
+import styled from "styled-components";
+import { StyledContainer } from "../../../../../../Atoms/Container/container.styles";
+import { MenuItemContainer } from "./components/MenuItemContainer/menuitemcontainer.styles";
 
 export const MenuContainer = styled(StyledContainer)`
   position: relative;
@@ -14,4 +14,4 @@ export const MenuContainer = styled(StyledContainer)`
   &:hover ${MenuItemContainer} {
     display: block;
   }
-`
+`;

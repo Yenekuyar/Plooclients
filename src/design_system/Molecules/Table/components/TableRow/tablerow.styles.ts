@@ -6,11 +6,11 @@ export const StyledTableRow = styled.tr`
   cursor: pointer;
   transition: 0.5s;
   border: none;
-  color: ${props => props.theme.pallete.primary.main};
+  color: ${props => props.theme.pallete.primary.text};
 
   &:hover {
-    background-color: ${props => props.theme.pallete.primary.main};
-    color: ${props => props.theme.pallete.primary.secondary};
+    background-color: ${props => props.theme.pallete.primary.main2};
+    color: ${props => props.theme.pallete.primary.text};
   };
 
   &:active {
