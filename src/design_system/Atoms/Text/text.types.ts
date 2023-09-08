@@ -5,3 +5,10 @@ export interface ITextProps {
   textAlign?: string;
   contentEditable?: boolean;
 }
+
+export interface ISTextProps {
+    children: ReactNode;
+    textAlign?: string;
+    contentEditable?: boolean;
+  }
+  

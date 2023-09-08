@@ -6,10 +6,11 @@ export const StyledContainer = styled.div<ISContainerProps>`
   padding: 4px;
   display: ${props => props.display || 'relative'};
   justify-content: ${props => props.justifyContent || 'normal'};
+  align-items: ${props => props.alignItems};
   flex-direction: ${props => props.flexDirection || 'column'};
   width: 100%;
   text-align: center;
-  overflow: ${props => props.overflow || 'visible'};
+  overflow-y: ${props => props.overflowY || 'visible'};
   flex-wrap: ${props => props.flexWrap || 'wrap'};
   flex-basis: ${props => props.flexBasis || '100%'};
   background-color: ${props => props.backgroundColor || false ? props.theme.pallete.primary.main : props.theme.pallete.primary.secondary};

@@ -5,6 +5,7 @@ export interface IPlooClients {
   CPF?: string;
   Email?: string;
   Phones?: [{
+    Id?: string,
     PhoneNumber?: string,
   }];
   StreetAddress?: string,

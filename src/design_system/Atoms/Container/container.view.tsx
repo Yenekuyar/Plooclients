@@ -13,6 +13,7 @@ export default function Container(props: IContainerProps) {
       flexBasis={props.flexBasis}
       maxHeight={props.maxHeight}
       overflow={props.overflow}   
+      overflowY={props.overflowY}
       backgroundColor={props.backgroundColor}
       >
         {props.children}

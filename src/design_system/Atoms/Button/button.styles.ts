@@ -4,6 +4,7 @@ import { ISButtonProps } from "./button.types";
 export const StyledButton = styled.button<ISButtonProps>`
   outline: none;
   cursor: pointer;
+  font-weight: 700;
   height: 48px;
   width: ${(props) => props.width};
   background-color: ${(props) => props.theme.pallete.primary.main};
