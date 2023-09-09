@@ -15,6 +15,11 @@ export const MenuItemButton = styled(StyledButton)`
     border: 2px solid ${(props) => props.theme.pallete.primary.white};
   }
 
+  &:active {
+    background-color: ${(props) => props.theme.pallete.primary.white};
+    color: ${(props) => props.theme.pallete.primary.main};
+  }
+
   .menu-item-link {
     text-decoration: none;
     color: ${(props) => props.theme.pallete.primary.white};

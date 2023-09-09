@@ -14,4 +14,9 @@ export const MenuButton = styled(StyledButton)`
   background-repeat: no-repeat;
   background-position: center;
   background-color: ${(props) => props.theme.pallete.primary.main};
+
+  &:hover {
+    border: none;
+    background-color: ${(props) => props.theme.pallete.primary.main2};
+  }
 `;
