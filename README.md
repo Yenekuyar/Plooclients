@@ -73,9 +73,6 @@ Essa página foi feita com um formulário de preenchimento para criar o cliente 
 Existe também a mesma tecnologia de debouncer na criação, para que não sobrecarregue dando double clicks no botão de "Criar Cliente"
 
 
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
@@ -90,12 +87,13 @@ Para baixar as bibliotecas necessárias para rodar o aplicativo, rode o comando 
 Roda a aplicação em um ambiente de desenvolvimento.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
 
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+# Getting Started with Create React App
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
