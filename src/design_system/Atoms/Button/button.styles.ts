@@ -17,7 +17,7 @@ export const StyledButton = styled.button<ISButtonProps>`
   &:hover {
     background-color: ${(props) => props.theme.pallete.primary.main};
     color: ${(props) => props.theme.pallete.primary.white};
-    border: 2px solid ${props => props.theme.pallete.primary.text};
+    border: 2px solid ${(props) => props.theme.pallete.primary.text};
   }
 
   &:active {

@@ -4,7 +4,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 export default function Clients() {
   const navigate = useNavigate();
 
-  const validateUserkey = localStorage.getItem('userkey')
+  const validateUserkey = localStorage.getItem("userkey");
 
   if (!validateUserkey) navigate("/");
 

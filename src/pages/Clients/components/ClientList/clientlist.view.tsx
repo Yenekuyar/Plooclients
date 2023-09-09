@@ -29,8 +29,8 @@ export default function ClientList() {
   const navigate = useNavigate();
   const userkey = validateUserkey();
 
-  //[TODO] Debouncer pra evitar 15 request por letra q eu to digitando
   useEffect(() => {
+    if (!userkey) navigate("/");
     if (userkey && searchValue == "") {
       setHasMore(true);
       getClients(
@@ -88,7 +88,7 @@ export default function ClientList() {
   return (
     <>
       <StyledSearchBar
-        placeholder="Busque clientes por Nome, Email ou Número de Telefone"
+        placeholder="Busque clientes por Nome, Email, Número de Telefone, CNPJ ou CPF..."
         value={searchValue}
         onChange={handleSearchValue}
       />

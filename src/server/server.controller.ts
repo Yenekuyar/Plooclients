@@ -11,7 +11,7 @@ class Server {
     endpoint: string,
     method: "GET" | "POST" | "PATCH" | "DELETE",
     userkey: string,
-    body?: BODY_TYPE,
+    body?: BODY_TYPE
   ): Promise<RETURN_TYPE> {
     const response = axios(this.apiUrl + endpoint, {
       method,
@@ -35,11 +35,24 @@ class Server {
     return this.axiosJson<RETURN_TYPE, any>(endpoint, "GET", userkey);
   }
 
-  post<RETURN_TYPE, BODY_TYPE>(endpoint: string, userkey: string, data: any): Promise<any> {
-    return this.axiosJson<RETURN_TYPE, BODY_TYPE>(endpoint, "POST", userkey, data);
+  post<RETURN_TYPE, BODY_TYPE>(
+    endpoint: string,
+    userkey: string,
+    data: any
+  ): Promise<any> {
+    return this.axiosJson<RETURN_TYPE, BODY_TYPE>(
+      endpoint,
+      "POST",
+      userkey,
+      data
+    );
   }
 
-  patch<RETURN_TYPE, BODY_TYPE>(endpoint: string, userkey: string, data: any): Promise<any> {
+  patch<RETURN_TYPE, BODY_TYPE>(
+    endpoint: string,
+    userkey: string,
+    data: any
+  ): Promise<any> {
     return this.axiosJson(endpoint, "PATCH", userkey, data);
   }
 
@@ -48,4 +61,4 @@ class Server {
   }
 }
 
-export default Server
+export default Server;

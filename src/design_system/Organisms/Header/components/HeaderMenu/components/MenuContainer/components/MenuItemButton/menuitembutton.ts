@@ -12,7 +12,7 @@ export const MenuItemButton = styled(StyledButton)`
 
   &:hover {
     color: ${(props) => props.theme.pallete.primary.white};
-    border: 2px solid ${props => props.theme.pallete.primary.white};
+    border: 2px solid ${(props) => props.theme.pallete.primary.white};
   }
 
   .menu-item-link {

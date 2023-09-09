@@ -9,16 +9,27 @@ export default function HeaderMenu() {
 
   function handleExit() {
     localStorage.removeItem("userkey");
-
     navigate("/");
+  }
+
+  function handleClientPath() {
+    navigate("/clients");
+  }
+
+  function handleCreateClientPath() {
+    navigate("create");
   }
 
   return (
     <MenuContainer>
       <MenuButton />
       <MenuItemContainer>
-        <MenuItemButton>Action</MenuItemButton>
-        <MenuItemButton>Another action</MenuItemButton>
+        <MenuItemButton onClick={handleClientPath}>
+          Lista de Clientes
+        </MenuItemButton>
+        <MenuItemButton onClick={handleCreateClientPath}>
+          Criar Cliente
+        </MenuItemButton>
         <MenuItemButton onClick={handleExit}>Sair</MenuItemButton>
       </MenuItemContainer>
     </MenuContainer>

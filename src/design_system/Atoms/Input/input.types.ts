@@ -4,5 +4,5 @@ export type IInputProps = {
   type: string;
   placeholder?: string;
   id: string | number;
-  width: string;
+  width?: string;
 } & InputHTMLAttributes<HTMLInputElement>;

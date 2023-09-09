@@ -1,10 +1,6 @@
-import { StyledTableHeader } from './tableheader.styles'
-import { ITableHeader } from './tableheader.types'
+import { StyledTableHeader } from "./tableheader.styles";
+import { ITableHeader } from "./tableheader.types";
 
 export default function TableHeader(props: ITableHeader) {
-  return (
-    <StyledTableHeader>
-      {props.children}
-    </StyledTableHeader>
-  )
+  return <StyledTableHeader>{props.children}</StyledTableHeader>;
 }

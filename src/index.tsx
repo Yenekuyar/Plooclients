@@ -1,11 +1,12 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
 import App from "./App";
 import Home from "./pages/Home/home.view";
+import React from "react";
 import Clients from "./pages/Clients/clients.view";
 import NotFound from "./pages/NotFound/notfound.view";
-import ClientModal from "./pages/Clients/components/ClientModal/clientmodal.view";
-import ClientList from "./pages/Clients/components/ClientList/clientlist.view";
+import ReactDOM from "react-dom/client";
+import ClientList from "./pages/Clients/components/ClientList/clientList.view";
+import ClientModal from "./pages/Clients/components/ClientModal/clientModal.view";
+import ClientGenerator from "./pages/Clients/components/ClientGenerator/clientGenerator.view";
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter(
@@ -14,9 +15,8 @@ const router = createBrowserRouter(
       <Route index element={<Home />}></Route>
       <Route path="/clients" element={<Clients />}>
         <Route path="" element={<ClientList />} />
-        <Route id="client-modal" path=":id" element={<ClientModal />} >
-          <Route path="edit"/>
-        </Route>
+        <Route id="client-modal" path=":id" element={<ClientModal />} />
+        <Route id="client-generator" path="create" element={<ClientGenerator />} />
       </Route>
 
       <Route path="*" element={<NotFound />}/>

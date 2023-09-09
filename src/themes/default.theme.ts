@@ -1,5 +1,5 @@
 export const lightTheme = {
-  name: 'light',
+  name: "light",
   pallete: {
     primary: {
       main: "#6759C0",
@@ -12,7 +12,7 @@ export const lightTheme = {
 };
 
 export const darkTheme = {
-  name: 'dark',
+  name: "dark",
   pallete: {
     primary: {
       main: "#171717",
@@ -23,4 +23,3 @@ export const darkTheme = {
     },
   },
 };
-
