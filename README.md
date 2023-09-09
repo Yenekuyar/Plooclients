@@ -34,7 +34,7 @@ A lista em si, é uma tabela que conta com um infinite scrolling para buscar cad
 
 ### Infinite Scroll ["clients"]
 
-A lista de clientes conta com a tecnologia de infinite scroll, 
+A lista de clientes conta com a tecnologia de infinite scroll, ao descer no final da lista, uma requisição automática rodará para carregar os próximos clientes.
 
 # Modal de Cliente ["clients/:id"]
 
@@ -71,8 +71,6 @@ Essa página foi feita com um formulário de preenchimento para criar o cliente 
 ### Debouncer
 
 Existe também a mesma tecnologia de debouncer na criação, para que não sobrecarregue dando double clicks no botão de "Criar Cliente"
-
-
 
 ## Available Scripts
 
